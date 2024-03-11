@@ -1,48 +1,74 @@
 import { useState } from "react";
 
 export default function InputForm() {
-  const [principal, setPrincipal] = useState(0);
-  const [rate, setRate] = useState(0);
-  const [duration, setDurations] = useState(0);
-  const [returnAmount, setReturnAmount] = useState(0);
+  const [userInput, setUserInput] = useState({
+    initialInvestment: 10000,
+    annualInvestment: 1200,
+    expectedReturn: 6,
+    duration: 10,
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const principal = Number(event.target.principal.value);
-    const rate = Number(event.target.rate.value);
-    const duration = Number(event.target.duration.value);
-    const returnAmount = principal * Math.pow(1 + rate / 100, duration);
-    if (principal > 0) {
-      setPrincipal(principal);
-    }
-    if (principal > 0 && rate > 0) {
-      setRate(rate);
-    }
-    if (principal > 0 && duration > 0) {
-      setDurations(duration);
-    }
-
-    if (principal > 0 && rate > 0 && duration > 0) {
-      setReturnAmount(returnAmount);
-    } else {
-      alert("Please enter valid values");
-    }
+  const handleChange = (inputIdentifier, newValue) => {
+    setUserInput((prevUserInput) => {
+      return {
+        ...prevUserInput,
+        [inputIdentifier]: newValue,
+      };
+    });
   };
 
   return (
-    <form id="user-input" onSubmit={handleSubmit}>
+    <section id="user-input">
       <div className="input-group">
-        <label>Initial Investment</label>
-        <input type="number" id="principal" />
-        <label>Annual Investment</label>
-        <input type="number" id="amount" />
+        <p>
+          <label>Initial Investment</label>
+          <input
+            type="number"
+            id="initial-investment"
+            required
+            value={userInput.initialInvestment}
+            onChange={(event) =>
+              handleChange("initialInvestment", event.target.value)
+            }
+          />
+        </p>
+        <p>
+          <label>Annual Investment</label>
+          <input
+            type="number"
+            id="annual-amount"
+            required
+            value={userInput.annualInvestment}
+            onChange={(event) =>
+              handleChange("annualInvestment", event.target.value)
+            }
+          />
+        </p>
       </div>
       <div className="input-group">
-        <label>Rate</label>
-        <input type="number" id="rate" />
-        <label>Duration</label>
-        <input type="number" id="years" />
+        <p>
+          <label>Expected Return Rate</label>
+          <input
+            type="number"
+            id="rate"
+            required
+            value={userInput.expectedReturn}
+            onChange={(event) =>
+              handleChange("expectedReturn", event.target.value)
+            }
+          />
+        </p>
+        <p>
+          <label>Duration</label>
+          <input
+            type="number"
+            id="years"
+            required
+            value={userInput.duration}
+            onChange={(event) => handleChange("duration", event.target.value)}
+          />
+        </p>
       </div>
-    </form>
+    </section>
   );
 }

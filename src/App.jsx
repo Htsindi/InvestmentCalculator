@@ -1,17 +1,13 @@
 import Header from "./Components/Header";
 import InputForm from "./Components/InputForm";
+import Results from "./Components/Results";
 
-function App(props) {
+function App() {
   return (
     <>
       <Header />
-      <InputForm
-        onSubmit={handleSubmit}
-        principal={props.principal}
-        rate={props.rate}
-        duration={props.duration}
-        returnAmount={props.returnAmount}
-      />
+      <InputForm />
+      <Results />
     </>
   );
 }
