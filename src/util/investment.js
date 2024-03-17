@@ -33,6 +33,6 @@ export function calculateInvestmentResults({
 export const formatter = new Intl.NumberFormat("en-En", {
   style: "currency",
   currency: "ZAR",
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0,
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
 });

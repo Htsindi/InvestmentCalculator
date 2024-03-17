@@ -1,6 +1,6 @@
 import { calculateInvestmentResults, formatter } from "../util/investment.js";
 
-export default function CalculatedResults({ input }) {
+export default function Results({ input }) {
   const resultsData = calculateInvestmentResults(input);
   //console.log(resultsData);
   //properties in console log used to set up table/array
